@@ -1,0 +1,46 @@
+User
+    ident Text
+    password Text Maybe
+    UniqueUser ident
+    deriving Typeable
+Email
+    email Text
+    user UserId Maybe
+    verkey Text Maybe
+    UniqueEmail email
+Course
+    genEdArea Text
+    prerequisites Text
+    title Text
+    url Text
+    credit Double
+    number Text
+    courseid Int
+    semester Text
+    department Text
+    gradingMode Text
+    description Text
+    sections Text
+Professor
+    name Text
+    rating Double
+Section
+    name Int
+    course_uid Int
+    permissionRequired Text
+    fr Text
+    so Text
+    jr_NonMajor Text
+    jr_Major Text
+    sr_NonMajor Text
+    sr_Major Text
+    grad_Major Text
+    additional_requirements Text
+    time Text
+    professor Int
+    location Text
+    major_readings Text
+    assignments_and_examinations Text
+
+
+ -- By default this file is used in Model.hs (which is imported by Foundation.hs)

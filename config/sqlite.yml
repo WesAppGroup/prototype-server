@@ -1,0 +1,20 @@
+Default: &defaults
+  database: Prototype.sqlite3
+  poolsize: 10
+
+Development:
+  <<: *defaults
+
+Testing:
+  database: Prototype_test.sqlite3
+  <<: *defaults
+
+Staging:
+  database: Prototype_staging.sqlite3
+  poolsize: 100
+  <<: *defaults
+
+Production:
+  database: Prototype_production.sqlite3
+  poolsize: 100
+  <<: *defaults
