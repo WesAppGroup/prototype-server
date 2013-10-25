@@ -41,6 +41,18 @@ Section
     location Text
     major_readings Text
     assignments_and_examinations Text
-
+Location
+    name Text
+    short_name Text
+    address Text
+Event
+    name Text
+    location_id LocationId
+    time Int
+    link Text
+    description Text
+    category Int
+    latitude Double
+    longitude Doube
 
  -- By default this file is used in Model.hs (which is imported by Foundation.hs)
