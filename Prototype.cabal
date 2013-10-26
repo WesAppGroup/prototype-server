@@ -21,7 +21,8 @@ library
                      Settings.Development
                      Handler.Home
                      Handler.Section
-		     Handler.Event
+                     Handler.Event
+                     Handler.AddEvent
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
