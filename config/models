@@ -41,17 +41,13 @@ Section
     location Text
     major_readings Text
     assignments_and_examinations Text
-Location
-    name Text
-    short_name Text
-    address Text
 Event
     name Text
-    location_id LocationId
+    location Text
     time Int
     link Text
     description Text
-    category Int
+    category Text
     latitude Double
     longitude Double
 

@@ -6,15 +6,15 @@ import Data.Maybe(fromJust)
 
 $(deriveJSON defaultOptions ''Event)
 
-postAddEventR :: Handler Value
-postAddEventR = do
+getAddEventR :: Handler Value
+getAddEventR = do
    ev <- runInputGet $ Event
            <$> ireq textField "name"
-       <*> ((fromJust . fromPathPiece) <$> ireq textField "locationId")
+       <*> ireq textField "location"
        <*> ireq intField "time"
        <*> ireq textField "link"
        <*> ireq textField "description"
-       <*> ireq intField "category"
+       <*> ireq textField "category"
        <*> ireq doubleField "latitude"
        <*> ireq doubleField "longitude"
    eId <- runDB $  insert ev
