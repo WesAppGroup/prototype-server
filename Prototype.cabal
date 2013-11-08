@@ -23,6 +23,7 @@ library
                      Handler.Section
                      Handler.Event
                      Handler.AddEvent
+                     Handler.AllEvents
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
