@@ -9,3 +9,5 @@
 /events/by-id/#EventId EventR GET
 /events AddEventR GET
 /events/all AllEventsR GET
+/courses/all CourseR GET
+/professors/all AllProfessorsR GET

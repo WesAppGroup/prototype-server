@@ -21,9 +21,6 @@ Course
     gradingMode Text
     description Text
     sections Text
-Professor
-    name Text
-    rating Double
 Section
     name Int
     course_uid Int
@@ -37,9 +34,11 @@ Section
     grad_Major Text
     additional_requirements Text
     time Text
-    professor Int
+    professors Text
     location Text
     major_readings Text
+    seats_available Int
+    enrollment_limit Int
     assignments_and_examinations Text
 Event
     name Text
