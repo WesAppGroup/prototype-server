@@ -137,7 +137,7 @@ def add_event(event):
     try:
         os.system('curl http://localhost:3000/events?name=' + urllib.quote(str(name)) + '\&location=' + urllib.quote(str(loc)) + '\&time=' + str(tm) + '\&link=' + urllib.quote(str(link)) + '\&description=' + urllib.quote(str(desc)) + '\&category=' + urllib.quote(str(cat)) + '\&latitude=' + str(lat) + '\&longitude=' + str(lon))
     except:
-        a=2+2
+        a=2+2 #Lawls. Could just log the failure
     # else:
     #     print "EXISTS",name,loc
        # delete_event(exists.name)

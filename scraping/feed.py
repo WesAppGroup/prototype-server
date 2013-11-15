@@ -3,7 +3,7 @@ import feedparser
 import re
 import datetime
 from weshappening import add_event
-from get_data import xml_parser
+from get_data import xml_parser,cat_choose2
 from time import sleep
 import logging
 
@@ -34,9 +34,10 @@ logging.debug("Updating events")
 feed_url = "http://events.wesleyan.edu/events/cal_rss_today"
 
 feed = feedparser.parse(feed_url)
+wes_events_cats = cat_choose2(feed['items'])
+print wes_events_cats
 
 wesleying_feed = xml_parser()
-
 
 ite = 0
 for item in feed["items"]:
@@ -71,11 +72,14 @@ for item in feed["items"]:
     for v in value:
         if v.startswith("URL"):
             link = v.lstrip("URL: ")
+    print "URL for this event=",link
 
-    cat = ite % 4
-    ite += 1
+    #Category choosing
+    cat = wes_events_cats[item]
+    print cat
+
     event = {"name": name, "location": loc, "time": dt, "link": link, "description": desc, "category":cat}
-
+    print event
     add_event(event)
     sleep(1)
 
@@ -97,22 +101,17 @@ for item in wesleying_feed:
     d1 = list(desc)
     d1 = [i for i in d1 if i != "\n"]
     desc = "".join(d1)
-    # print desc,"DESSSSSSSSSCR",type(desc),str(desc)
     time = re.search("(:?january|february|march|april|may|june|july|august|september|october|november|december).*\d{1,2}, .*\d{4}.*; \d{1,2}:\d{2}.*to.*\d{1,2}:\d{2}.*(a|p)m(.|;)",date_time)
     if not time:
         time = re.search("(:?january|february|march|april|may|june|july|august|september|october|november|december).*\d{2}, .*\d{4}.*; \d{1}:\d{2}.*(a|p)m(;|.)",date_time)
     if time:
         time = [i.split() for i in time.group().split(".") if i.split()]
-        # print "TIME!!",time
     loc = item["location"]
-    # print "LOOOO",loc
     if loc:
         ##ADD FOSS HILL TO BUILDINGS.TXT ?
         loc = no_unicode(no_unicode(loc[0]).strip().replace("$","s"))
-        # print "LOCATION",loc
     link = str(item['url'])
-    # print link
-
+    cat = item["category"]
     times = []
     if time:
         for t in time:
@@ -159,21 +158,16 @@ for item in wesleying_feed:
                         end_dt = -1
 
                 except IndexError:
-                    # print "NO END TIME IN THIS TIME",t
                     end_dt = -1
 
-                # print start_dt,"to",end_dt
                 times.append((start_dt,end_dt))
 
-        # print times
 
-    cat = ite % 4
     ite += 1
     if not times:
         times = [[datetime.datetime.today()]]
     event = {"name": name, "location": loc, "time": times[0][0], 
             "link": link, "description": desc, "category":cat}
-    # print event
     add_event(event)
     sleep(1)
 
