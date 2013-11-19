@@ -28,11 +28,11 @@ isIn (x:xs) q = (x `isInfixOf` q) && (isIn xs q)
 getClearR :: String -> Handler Value
 getClearR pwd = do
   if pwd == "thisiswhy"
-    then
+    then do
       runDB $ deleteWhere ([] :: [Filter Course])
       runDB $ deleteWhere ([] :: [Filter Section])
       return $ object [ "result" .= ("ok" :: Text) ]
-    else
+    else do
       return $ object [ "result" .= ("error" :: Text) ]
 
 postAddCourseR :: Handler Value

@@ -1,6 +1,7 @@
 require 'json'
 begin
 # need to url-encode spaces
+`curl stumobile0.wesleyan.edu/clear/thisiswhy`
 year = Time.now.year
 all_courses = JSON.parse `curl https://webapps.wesleyan.edu/wapi/v1/public/academic/courses/#{year}`
 all_courses['academic']['courses'].each do |section|

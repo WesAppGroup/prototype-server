@@ -13,7 +13,7 @@ getSectionR sId = do
 postAddSectionR :: Handler Value
 postAddSectionR = do
   s <- runInputPost $ Section
-   <*> ireq intField "course_uid"
+   <$> ireq intField "course_uid"
    <*> ireq textField "time"
    <*> ireq textField "professors"
    <*> ireq textField "location"

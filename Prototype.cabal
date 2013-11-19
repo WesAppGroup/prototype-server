@@ -25,7 +25,6 @@ library
                      Handler.AddEvent
                      Handler.AllEvents
                      Handler.Course
-                     Handler.AllProfessors
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

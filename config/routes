@@ -10,5 +10,4 @@
 /events AddEventR GET
 /events/all AllEventsR GET
 /courses/all CourseR GET
-/professors/all AllProfessorsR GET
 /clear/#String ClearR GET
