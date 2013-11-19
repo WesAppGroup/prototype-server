@@ -27,7 +27,7 @@ isIn (x:xs) q = (x `isInfixOf` q) && (isIn xs q)
 
 getClearR :: String -> Handler Value
 getClearR pwd = do
-  if pwd == "#thisiswhy"
+  if pwd == "thisiswhy"
     then
       runDB $ deleteWhere ([] :: [Filter Course])
       runDB $ deleteWhere ([] :: [Filter Section])
@@ -39,17 +39,12 @@ postAddCourseR :: Handler Value
 postAddCourseR = do
   x <- runInputPost $ Course
     <$> ireq textField "genEdArea"
-    <*> ireq textField "prerequisites"
     <*> ireq textField "title"
-    <*> ireq textField "url"
-    <*> ireq doubleField "credit"
     <*> ireq textField "number"
     <*> ireq intField "courseid"
     <*> ireq textField "semester"
     <*> ireq textField "department"
-    <*> ireq textField "gradingMode"
     <*> ireq textField "description"
-    <*> ireq textField "sections"
   cId <- runDB $ insert x
   return $ object [ "course_key" .= cId ]
 
