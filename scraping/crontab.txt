@@ -1,0 +1,2 @@
+0 0 2 * * /usr/bin/python2.6 /root/prototype-server/scraping/feed.py 
+

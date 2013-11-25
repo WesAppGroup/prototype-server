@@ -5,9 +5,11 @@
 /robots.txt RobotsR GET
 
 / HomeR GET POST
-/sections/#SectionId SectionR GET
+/sections/by-id/#SectionId SectionR GET
 /events/by-id/#EventId EventR GET
 /events AddEventR GET
 /events/all AllEventsR GET
 /courses/all CourseR GET
+/courses/add AddCourseR POST
 /clear/#String ClearR GET
+/sections/all AllSectionR GET

@@ -10,6 +10,11 @@ getSectionR sId = do
     section <- runDB $ get404 sId
     returnJson section
 
+getAllSectionR :: Handler Value
+getAllSectionR = do
+    sections <- (runDB $ selectList [] []) :: Handler [Entity Section]
+    returnJson sections
+
 postAddSectionR :: Handler Value
 postAddSectionR = do
   s <- runInputPost $ Section
