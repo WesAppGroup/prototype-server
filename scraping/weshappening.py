@@ -123,25 +123,23 @@ def index():
 def add_event(event):
     name = event["name"]
     loc = event["location"]
-    if len(loc) == 0: loc = "TBA"
-    lat, lon = (0.0, 0.0)
+    if len(loc) == 0: 
+        loc = "TBA"
+        lat, lon = (0.0, 0.0)
     try:
         lat, lon = Geocoder.geocode(loc + ", Middletown, CT, 06457").coordinates
     except:
         lat, lon = (41.5555, -72.6575)
     tm = str(int(time.mktime(event["time"].timetuple())))
     link = event["link"]
-    if len(link) == 0: link = "N/A"
+    if len(link) == 0: 
+        link = "N/A"
     desc = event["description"]
     cat = event["category"]
     try:
         os.system('curl http://localhost/events?name=' + urllib.quote(str(name)) + '\&location=' + urllib.quote(str(loc)) + '\&time=' + str(tm) + '\&link=' + urllib.quote(str(link)) + '\&description=' + urllib.quote(str(desc)) + '\&category=' + urllib.quote(str(cat)) + '\&latitude=' + str(lat) + '\&longitude=' + str(lon))
     except:
-        a=2+2
-    # else:
-    #     print "EXISTS",name,loc
-       # delete_event(exists.name)
-       # add_event(event)
+        pass
 
 def delete_event(event):
     ev = Event.query.filter_by(name=event).first()
