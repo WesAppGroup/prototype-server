@@ -126,7 +126,7 @@ def add_event(event):
     if len(loc) == 0: loc = "TBA"
     lat, lon = (0.0, 0.0)
     try:
-        lat, lon = Geocoder.geocode(loc.name + ", Middletown, CT, 06457").coordinates
+        lat, lon = Geocoder.geocode(loc + ", Middletown, CT, 06457").coordinates
     except:
         lat, lon = (41.5555, -72.6575)
     tm = str(int(time.mktime(event["time"].timetuple())))
@@ -137,7 +137,7 @@ def add_event(event):
     try:
         os.system('curl http://localhost/events?name=' + urllib.quote(str(name)) + '\&location=' + urllib.quote(str(loc)) + '\&time=' + str(tm) + '\&link=' + urllib.quote(str(link)) + '\&description=' + urllib.quote(str(desc)) + '\&category=' + urllib.quote(str(cat)) + '\&latitude=' + str(lat) + '\&longitude=' + str(lon))
     except:
-        a=2+2 #Lawls. Could just log the failure
+        a=2+2
     # else:
     #     print "EXISTS",name,loc
        # delete_event(exists.name)

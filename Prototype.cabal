@@ -74,6 +74,7 @@ library
                  , conduit                       >= 1.0
                  , monad-logger                  >= 0.3
                  , fast-logger                   >= 0.3
+                 , time
 
 executable         Prototype
     if flag(library-only)

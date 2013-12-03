@@ -18,11 +18,11 @@ getAllSectionR = do
 postAddSectionR :: Handler Value
 postAddSectionR = do
   s <- runInputPost $ Section
-   <$> ireq intField "course_uid"
+   <$> ireq textField "course_uid"
    <*> ireq textField "time"
    <*> ireq textField "professors"
    <*> ireq textField "location"
-   <*> ireq intField "seats_available"
+   <*> ireq textField "seats_available"
   s_id <- runDB $ insert s
   return $ object [ "section_key" .= s_id ]
 

@@ -17,11 +17,11 @@ Course
     department Text
     description Text
 Section
-    course_uid Int
+    course_uid Text
     time Text
     professors Text
     location Text
-    seats_available Int
+    seats_available Text
 Event
     name Text
     location Text

@@ -13,3 +13,5 @@
 /courses/add AddCourseR POST
 /clear/#String ClearR GET
 /sections/all AllSectionR GET
+/sections/add AddSectionR POST
+/events/clear ClearOldEventsR GET
