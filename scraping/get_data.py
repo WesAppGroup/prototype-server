@@ -145,7 +145,6 @@ def cat_choose2(posts):
             count = 0
             for tag in cat_tags[item]:
                 occurs = description.count(tag)
-                # print occurs, tag
                 count += occurs
                 if count > best_count:
                     best_count = count
@@ -173,28 +172,24 @@ def cat_choose(posts):
     'Admissions':['admission','tour','session','information'],
     'Other':[]
     }
-    print posts
     event_cats = {}
     for post in posts:
         potentials = []
         cats = post.getElementsByTagName('category')
         for c in cats:
             name = c.childNodes[0].data.lower()
-            print name
             most = 0
             identifier = "Other"
             for item in cat_tags.keys():
                 count = 0
                 for tag in cat_tags[item]:
-                    # print tag,"TAG"
                     if tag in name:
-                        print tag,"TAG"
                         count += 1
                 if count > most:
                     most = count
                     identifier = item
             potentials.append(identifier)
-        print potentials,post.getElementsByTagName('title')[0].childNodes[0].data
+        # print potentials,post.getElementsByTagName('title')[0].childNodes[0].data
         #now find the most common potential category, excluding other. If
         #none, then cat = other
         cats2 = [z for z in potentials if z != "Other"]
@@ -208,19 +203,15 @@ def cat_choose(posts):
 
         event_cats[post] = category
 
-    print event_cats
     return event_cats
 
 
 def xml_parser():
     """FOR WESLEYING"""
     all_items = get_xml()
-    print "total items =",len(all_items)
     events = []
     items = only_events(all_items)[0]
     event_cats = cat_choose(items)
-    print event_cats
-    print "TOTAL ITEMS=",len(items)
     for i in items:
         title = i.getElementsByTagName('title')[0].childNodes[0].data
         url = i.getElementsByTagName('link')[0].childNodes[0].data
@@ -242,9 +233,7 @@ def xml_parser():
         content = soup.get_text('|').split('|')
         match = content_parser(content,identifiers)
         if match:
-            ##DO MORE THINGS
             built = content_builder(content,identifiers,match)
-            # print built
             if built.get("place"):
                 event_location = built.get("place")
             if built.get("time"):
@@ -256,14 +245,6 @@ def xml_parser():
             "location":event_location,"time":event_time,
             "date":event_date,"full_description":full_description,
             "category":category}
-        # else:
-        #     event = {"title":title,"url":url,"description":description,
-        #         "location":event_location,"time":event_time,
-        #         "date":event_date,"full_description":full_description}
 
         events.append(event)
-    print events
     return events
-
-    #import get_data;a = get_data.xml_parser()
-    #for i in a: print i['title'] +  " " + i['category']
