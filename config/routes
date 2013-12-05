@@ -11,6 +11,7 @@
 /events/all AllEventsR GET
 /courses/all CourseR GET
 /courses/add AddCourseR POST
+/courses/search/#String SearchCourseR GET
 /clear/#String ClearR GET
 /sections/all AllSectionR GET
 /sections/add AddSectionR POST
