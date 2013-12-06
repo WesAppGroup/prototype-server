@@ -121,6 +121,7 @@ def index():
     
 
 def add_event(event):
+    print event
     name = event["name"]
     loc = event["location"]
     if len(loc) == 0: 

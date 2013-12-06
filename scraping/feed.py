@@ -77,7 +77,6 @@ for item in feed["items"]:
     event = {"name": name, "location": loc, "time": dt, "link": link, "description": desc, "category":cat}
 
     add_event(event)
-    print event
     sleep(1)
 
 
@@ -164,7 +163,6 @@ for item in wesleying_feed:
         times = [[datetime.datetime.today()]]
     event = {"name": name, "location": loc, "time": times[0][0], 
             "link": link, "description": desc, "category":cat}
-    # print event
     add_event(event)
     sleep(1)
 
