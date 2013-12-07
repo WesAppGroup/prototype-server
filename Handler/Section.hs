@@ -15,6 +15,11 @@ getAllSectionR = do
     sections <- (runDB $ selectList [] []) :: Handler [Entity Section]
     returnJson sections
 
+getSectionsForCourseR :: Int -> Handler Value
+getSectionsForCourseR courseId = do
+    sections <- runDB $ selectList [ SectionCourseId ==. courseId ] []
+    returnJson sections
+
 postAddSectionR :: Handler Value
 postAddSectionR = do
   s <- runInputPost $ Section
