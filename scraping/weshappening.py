@@ -121,6 +121,7 @@ def index():
     
 
 def add_event(event):
+    print event
     name = event["name"]
     loc = event["location"]
     if len(loc) == 0: 
@@ -129,7 +130,7 @@ def add_event(event):
     try:
         lat, lon = Geocoder.geocode(loc + ", Middletown, CT, 06457").coordinates
     except:
-        lat, lon = (41.5555, -72.6575)
+        lat, lon = (41.5555971, -72.65834300000002)
     tm = str(int(time.mktime(event["time"].timetuple())))
     link = event["link"]
     if len(link) == 0: 
