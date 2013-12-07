@@ -5,7 +5,8 @@
 /robots.txt RobotsR GET
 
 / HomeR GET POST
-/sections/by-id/#SectionId SectionR GET
+/sections/by-key/#SectionId SectionR GET
+/sections/by-id/#Int SectionsForCourseR GET
 /events/by-id/#EventId EventR GET
 /events AddEventR GET
 /events/all AllEventsR GET
