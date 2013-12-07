@@ -43,11 +43,7 @@ valid_courses.each do |section|
     system(cmd)
     course_id = JSON.parse(`#{cmd}`)['course_id']
   end
-  if course_id
-    cmd = "curl --data  \"course_uid=#{course_id}"
-  else
-    cmd = "curl --data \"course_uid=NA"
-  end
+  cmd = "curl --data  \"course_uid=#{section['course'].to_i.to_s}"
   cmd << '&professors='
   if section_info and section_info['meetings'] and section_info['meetings'][0] and section_info['meetings'][0]['instructors']
     if section_info['meetings'][0]['instructors'].class != Array

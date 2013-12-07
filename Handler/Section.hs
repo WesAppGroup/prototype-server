@@ -15,10 +15,15 @@ getAllSectionR = do
     sections <- (runDB $ selectList [] []) :: Handler [Entity Section]
     returnJson sections
 
+getSectionsForCourseR :: Int -> Handler Value
+getSectionsForCourseR courseId = do
+    sections <- runDB $ selectList [ SectionCourseid ==. courseId ] []
+    returnJson sections
+
 postAddSectionR :: Handler Value
 postAddSectionR = do
   s <- runInputPost $ Section
-   <$> ireq textField "course_uid"
+   <$> ireq intField "course_uid"
    <*> ireq textField "time"
    <*> ireq textField "professors"
    <*> ireq textField "location"
