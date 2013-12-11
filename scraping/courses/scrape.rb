@@ -23,7 +23,7 @@ valid_courses.each do |section|
     cmd << '&courseid='
     cmd << section['course'].to_i.to_s
     cmd << '&semester='
-    term = section['semester'].to_i % 10
+    term = section['term'].to_i % 10
     if term == 6
       cmd << 'Summer'
     elsif term == 9
