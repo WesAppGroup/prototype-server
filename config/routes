@@ -6,7 +6,7 @@
 
 / HomeR GET POST
 /sections/by-key/#SectionId SectionR GET
-/sections/by-id/#Int SectionsForCourseR GET
+/sections/by-id/#Int/#Int SectionsForCourseR GET
 /events/by-id/#EventId EventR GET
 /events AddEventR GET
 /events/all AllEventsR GET
