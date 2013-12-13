@@ -4,6 +4,7 @@ begin
 `curl stumobile0.wesleyan.edu/clear/thisiswhy`
 year = Time.now.year
 all_courses = JSON.parse `curl https://webapps.wesleyan.edu/wapi/v1/public/academic/courses/#{year} 2>/dev/null`
+term = ''
 valid_courses = all_courses['academic']['courses'].select { |c| c['course'] and c['section'] and c['term'] }
 valid_courses.each do |section|
   begin
@@ -45,7 +46,6 @@ valid_courses.each do |section|
   end
   cmd = "curl --data  \"course_uid=#{section['course'].to_i.to_s}"
   cmd << '&semester='
-  term = section['term'].to_i % 10
   if term == 6
       cmd << '0'
     elsif term == 9
