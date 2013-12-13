@@ -18,6 +18,7 @@ Course
     description Text
 Section
     courseid Int
+    semester Int
     time Text
     professors Text
     location Text
