@@ -3,6 +3,7 @@ begin
 # need to url-encode spaces
 `curl stumobile0.wesleyan.edu/clear/thisiswhy`
 year = Time.now.year
+year -= 1 if Time.now.month < 6
 all_courses = JSON.parse `curl https://webapps.wesleyan.edu/wapi/v1/public/academic/courses/#{year} 2>/dev/null`
 term = ''
 valid_courses = all_courses['academic']['courses'].select { |c| c['course'] and c['section'] and c['term'] }
