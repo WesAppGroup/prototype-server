@@ -3,7 +3,9 @@ begin
 # need to url-encode spaces
 `curl stumobile0.wesleyan.edu/clear/thisiswhy`
 year = Time.now.year
+year -= 1 if Time.now.month < 6
 all_courses = JSON.parse `curl https://webapps.wesleyan.edu/wapi/v1/public/academic/courses/#{year} 2>/dev/null`
+term = ''
 valid_courses = all_courses['academic']['courses'].select { |c| c['course'] and c['section'] and c['term'] }
 valid_courses.each do |section|
   begin
@@ -23,7 +25,7 @@ valid_courses.each do |section|
     cmd << '&courseid='
     cmd << section['course'].to_i.to_s
     cmd << '&semester='
-    term = section['semester'].to_i % 10
+    term = section['term'].to_i % 10
     if term == 6
       cmd << 'Summer'
     elsif term == 9
@@ -44,6 +46,14 @@ valid_courses.each do |section|
     course_id = JSON.parse(`#{cmd}`)['course_id']
   end
   cmd = "curl --data  \"course_uid=#{section['course'].to_i.to_s}"
+  cmd << '&semester='
+  if term == 6
+      cmd << '0'
+    elsif term == 9
+      cmd << '1'
+    else
+      cmd << '2'
+    end
   cmd << '&professors='
   if section_info and section_info['meetings'] and section_info['meetings'][0] and section_info['meetings'][0]['instructors']
     if section_info['meetings'][0]['instructors'].class != Array

@@ -45,7 +45,12 @@ postAddCourseR = do
     <*> ireq textField "semester"
     <*> ireq textField "department"
     <*> ireq textField "description"
-  cId <- runDB $ insert x
-  return $ object [ "course_key" .= cId ]
+  c <- runDB $ selectList [ CourseCourseid ==. (courseCourseid x), CourseSemester ==. (courseSemester x) ] []
+  if null c
+    then do
+      cId <- runDB $ insert x
+      return $ object [ "course_key" .= cId ]
+    else do
+      return $ object [ "course_key" .= ("null" :: Text) ]
 
       
